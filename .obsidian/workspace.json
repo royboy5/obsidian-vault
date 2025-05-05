@@ -27,7 +27,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1 Projects/Udemy - LLM Engineering/Section 1/Setup Env.md",
+                "file": "4 Archives/Udemy - LLM Engineering/Section 1/Setup Env.md",
                 "mode": "source",
                 "source": false
               },
@@ -108,7 +108,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1 Projects/Udemy - LLM Engineering/Section 1/Setup Env.md",
+                "file": "4 Archives/Udemy - LLM Engineering/Section 1/Setup Env.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1 Projects/Udemy - LLM Engineering/Section 1/Setup Env.md",
+                "file": "4 Archives/Udemy - LLM Engineering/Section 1/Setup Env.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -154,7 +154,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1 Projects/Udemy - LLM Engineering/Section 1/Setup Env.md"
+                "file": "4 Archives/Udemy - LLM Engineering/Section 1/Setup Env.md"
               },
               "icon": "lucide-list",
               "title": "Outline of Setup Env"
@@ -179,8 +179,12 @@
   },
   "active": "2a35c095a058aa06",
   "lastOpenFiles": [
-    "3 Resources/Software Engineering/LLM Engineering/Udemy - LLM Engineering/Section 1.md",
+    "4 Archives/Untitled.md",
+    "4 Archives/Udemy - LLM Engineering/Section 1/Setup Env.md",
+    "4 Archives/Udemy - LLM Engineering/Section 1",
+    "4 Archives/Udemy - LLM Engineering",
     "1 Projects/Udemy - LLM Engineering/Section 1/Setup Env.md",
+    "3 Resources/Software Engineering/LLM Engineering/Udemy - LLM Engineering/Section 1.md",
     "1 Projects/Udemy - LLM Engineering/Section 1",
     "1 Projects/Udemy - LLM Engineering",
     "2 Areas/Software Development/LLM Engineering/Udemy - LLM Engineering.md",
@@ -197,9 +201,7 @@
     "3 Resources/Software Engineering/Languages/Python",
     "3 Resources/Software Engineering/LLMs",
     "templates/Daily Notes.md",
-    "Daily Notes",
     "3 Resources/Software Engineering/System Design/Architectural Drivers.md",
-    "templates",
     "Untitled.canvas",
     "Untitled.md",
     "3 Resources/Software Engineering/Languages/C/Data Types.md"
