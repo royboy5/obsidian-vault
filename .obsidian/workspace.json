@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "3 Resources/Software Engineering/LLM Engineering/Udemy - LLM Engineering/Section 1.md",
+                "file": "1 Projects/Udemy - LLM Engineering/Section 1/Setup Env.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Section 1"
+              "title": "Setup Env"
             }
           }
         ],
@@ -108,7 +108,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "3 Resources/Software Engineering/LLM Engineering/Udemy - LLM Engineering/Section 1.md",
+                "file": "1 Projects/Udemy - LLM Engineering/Section 1/Setup Env.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +118,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Section 1"
+              "title": "Backlinks for Setup Env"
             }
           },
           {
@@ -127,12 +127,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "3 Resources/Software Engineering/LLM Engineering/Udemy - LLM Engineering/Section 1.md",
+                "file": "1 Projects/Udemy - LLM Engineering/Section 1/Setup Env.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Section 1"
+              "title": "Outgoing links from Setup Env"
             }
           },
           {
@@ -154,10 +154,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "3 Resources/Software Engineering/LLM Engineering/Udemy - LLM Engineering/Section 1.md"
+                "file": "1 Projects/Udemy - LLM Engineering/Section 1/Setup Env.md"
               },
               "icon": "lucide-list",
-              "title": "Outline of Section 1"
+              "title": "Outline of Setup Env"
             }
           }
         ]
@@ -179,11 +179,14 @@
   },
   "active": "2a35c095a058aa06",
   "lastOpenFiles": [
+    "3 Resources/Software Engineering/LLM Engineering/Udemy - LLM Engineering/Section 1.md",
+    "1 Projects/Udemy - LLM Engineering/Section 1/Setup Env.md",
+    "1 Projects/Udemy - LLM Engineering/Section 1",
+    "1 Projects/Udemy - LLM Engineering",
     "2 Areas/Software Development/LLM Engineering/Udemy - LLM Engineering.md",
     "3 Resources/Software Engineering/LLM Engineering/Udemy - LLM Engineering/Section 4.md",
     "3 Resources/Software Engineering/LLM Engineering/Udemy - LLM Engineering/Section 3.md",
     "3 Resources/Software Engineering/LLM Engineering/Udemy - LLM Engineering/Section 2.md",
-    "3 Resources/Software Engineering/LLM Engineering/Udemy - LLM Engineering/Section 1.md",
     "3 Resources/Software Engineering/LLM Engineering/Untitled.md",
     "3 Resources/Software Engineering/LLM Engineering/Udemy - LLM Engineering",
     "3 Resources/Software Engineering/LLM Engineering",
@@ -197,9 +200,7 @@
     "Daily Notes",
     "3 Resources/Software Engineering/System Design/Architectural Drivers.md",
     "templates",
-    "attachments",
     "Untitled.canvas",
-    "3 Resources/Software Engineering/Languages",
     "Untitled.md",
     "3 Resources/Software Engineering/Languages/C/Data Types.md"
   ]
