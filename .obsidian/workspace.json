@@ -1,0 +1,206 @@
+{
+  "main": {
+    "id": "3765798682c5463f",
+    "type": "split",
+    "children": [
+      {
+        "id": "2809dd272999f4c6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4cfeda8490f889a1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "3 Resources/Software Engineering/Languages/C/Data Types.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Data Types"
+            }
+          },
+          {
+            "id": "2a35c095a058aa06",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "3 Resources/Software Engineering/LLM Engineering/Udemy - LLM Engineering/Section 1.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Section 1"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "0a3160c9ec63340b",
+    "type": "split",
+    "children": [
+      {
+        "id": "bc5ce60199712d8b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9a2ede1a0323be27",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "8753c2c666e124c1",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "cf1fd20d3da2c250",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "bd0034d415db1053",
+    "type": "split",
+    "children": [
+      {
+        "id": "fcd33d6a2c9209ed",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d39201eea7f25d07",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "3 Resources/Software Engineering/LLM Engineering/Udemy - LLM Engineering/Section 1.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Section 1"
+            }
+          },
+          {
+            "id": "61f10308408ffa74",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "3 Resources/Software Engineering/LLM Engineering/Udemy - LLM Engineering/Section 1.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Section 1"
+            }
+          },
+          {
+            "id": "1f640b528aa3d30f",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "0131d79e0427f49e",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "3 Resources/Software Engineering/LLM Engineering/Udemy - LLM Engineering/Section 1.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Section 1"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "2a35c095a058aa06",
+  "lastOpenFiles": [
+    "2 Areas/Software Development/LLM Engineering/Udemy - LLM Engineering.md",
+    "3 Resources/Software Engineering/LLM Engineering/Udemy - LLM Engineering/Section 4.md",
+    "3 Resources/Software Engineering/LLM Engineering/Udemy - LLM Engineering/Section 3.md",
+    "3 Resources/Software Engineering/LLM Engineering/Udemy - LLM Engineering/Section 2.md",
+    "3 Resources/Software Engineering/LLM Engineering/Udemy - LLM Engineering/Section 1.md",
+    "3 Resources/Software Engineering/LLM Engineering/Untitled.md",
+    "3 Resources/Software Engineering/LLM Engineering/Udemy - LLM Engineering",
+    "3 Resources/Software Engineering/LLM Engineering",
+    "2 Areas/Software Development/LLM Engineering/Dashboard.md",
+    "Daily Notes/2025-05-01.md",
+    "2 Areas/Software Development",
+    "2 Areas/Software Development/LLM Engineering",
+    "3 Resources/Software Engineering/Languages/Python",
+    "3 Resources/Software Engineering/LLMs",
+    "templates/Daily Notes.md",
+    "Daily Notes",
+    "3 Resources/Software Engineering/System Design/Architectural Drivers.md",
+    "templates",
+    "attachments",
+    "Untitled.canvas",
+    "3 Resources/Software Engineering/Languages",
+    "Untitled.md",
+    "3 Resources/Software Engineering/Languages/C/Data Types.md"
+  ]
+}
