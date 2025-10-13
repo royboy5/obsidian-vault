@@ -14,7 +14,7 @@
 - Clone repo https://github.com/ed-donner/llm_engineering
 - Install [Anaconda](https://docs.anaconda.com/anaconda/install/)
 - In project root, Create the environment: `conda env create -f environment.yml`
-- **Activate** env using this command: `conda activate llms`
+	- for windows - use the anaconda powershell **Activate** env using this command: `conda activate llms`
 - You should see `(llms)` in your prompt, which indicates you've activated your new environment.
 - Start Jupyter Lab `jupyter lab`
 - Review SETUP markdown files for troubleshooting
@@ -35,4 +35,28 @@
 - Run `python -m pip install --upgrade pip` followed by `pip install -r requirements.txt`
 - Start Jupyter Lab
 	- `jupyter lab`
+
+
+## Day 2
+---
+
+### Concepts
+
+- Modals
+	- frontier - biggest (i.e, claude, chatgpt, gemini, etc)
+	- Open Source (ollama)
+	- Closed Source (claude, chatgpt, gemini)
+- Tools
+- Techniques
+
+### 3 ways to use modals
+1. Chat interface
+	1. needs subscription
+2. cloud APIs
+	1. pay per req
+	2. langchain
+	3. Managed AI Services
+3. Direct inference - Self hosted
+	1. hugging face
+	2. ollama
 

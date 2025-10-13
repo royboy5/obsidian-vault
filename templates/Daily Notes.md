@@ -1,4 +1,4 @@
 ---
-aliases: []
+created: "{{date}}"
 tags:
 ---
