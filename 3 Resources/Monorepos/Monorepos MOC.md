@@ -8,7 +8,7 @@ tags:
 
 ## Monorepos MOC
 
-This is my central map and table of contents for all knowledge related to **Monorepos**.  Its purpose is to structure my atomic notes and guide my learning.
+*This is my central map and table of contents for all knowledge related to **Monorepos**.  Its purpose is to structure my atomic notes and guide my learning.*
 
 ---
 

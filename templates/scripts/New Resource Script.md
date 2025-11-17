@@ -38,7 +38,7 @@ const resourceTitle = `## ${resourceName} MOC`;
 const finalContent = `${resourceProperties}\n\n${resourceTitle}\n\n${resourceMocContent}`;
 
 // 9. Create Resource MOC 
-await tp.app.vault.create(`${resourceFolder}/${resourceName}.md`, finalContent);
+await tp.app.vault.create(`${resourceFolder}/${resourceFileName}.md`, finalContent);
 
 new Notice(`Resource "${resourceName}" created successfully!`, 5000);
 %>
