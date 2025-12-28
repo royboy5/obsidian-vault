@@ -8,7 +8,7 @@ tags:
 
 ## Project Brief: Nx Test Project
 
-*This is the high-level "what, why, and who" of the project. It's the guiding star to keep you focused.*
+Learning NX by building a React and Electron frontend.  With a Hono API backend.  I want to create a shared UI library as well as shared types across all apps (frontend and backend).
 
 ## 1. Summary / Mission Statement
 *A one-paragraph summary of the project.*

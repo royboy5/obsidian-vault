@@ -1,6 +1,11 @@
 {
 	"nodes":[
-		{"id":"c099ec14c0bb7509","x":-119,"y":-157,"width":250,"height":60,"type":"text","text":""}
+		{"id":"c099ec14c0bb7509","type":"text","text":"Nx Monorepo\n\n[[Nx Setup - Monorepo]]","x":-380,"y":-580,"width":159,"height":200},
+		{"id":"912dc538c5c259ca","type":"text","text":"Apps\n\n[[React]]\n\n[[Electron]]\n\n[[Hono]]\n\n\n","x":-780,"y":-260,"width":400,"height":540},
+		{"id":"2384bc1960267095","type":"text","text":"Libs\n\n[[Shared Types]]\n\n[[Shared UI Components]]\n\n","x":-221,"y":-260,"width":401,"height":540}
 	],
-	"edges":[]
+	"edges":[
+		{"id":"e96a8748e8047276","fromNode":"c099ec14c0bb7509","fromSide":"bottom","toNode":"912dc538c5c259ca","toSide":"top"},
+		{"id":"8dbccf9e90eca594","fromNode":"c099ec14c0bb7509","fromSide":"bottom","toNode":"2384bc1960267095","toSide":"top"}
+	]
 }
