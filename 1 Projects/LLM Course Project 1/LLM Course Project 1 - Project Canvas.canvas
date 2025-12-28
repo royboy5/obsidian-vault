@@ -1,0 +1,9 @@
+{
+	"nodes":[
+		{"id":"c90f23f769452aaf","x":-480,"y":240,"width":400,"height":400,"type":"group","label":"Untitled group"},
+		{"id":"aaf7f02df16ccab3","x":-192,"y":224,"width":400,"height":400,"type":"file","file":"templates/Setup Python AI Checklist.md"},
+		{"id":"dffca2bec9e48c74","type":"text","text":"Web page summerizer","x":-125,"y":-30,"width":250,"height":60},
+		{"id":"a56d216b429ae423","x":-465,"y":297,"width":250,"height":60,"type":"text","text":""}
+	],
+	"edges":[]
+}

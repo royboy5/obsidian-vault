@@ -1,0 +1,5 @@
+# This directory is a Syncthing folder marker.
+# Do not delete.
+
+folderID: opbqc-pmgkw
+created: 2025-11-14T23:44:47-05:00
