@@ -15,3 +15,32 @@ pnpm nx g @nx/react:{{app | lib}} {{APP PATH}}/{{APP_NAME}}
 	- [ ] serve (Dev)
 	- [ ] build (Prod)
 	- [ ] lint
+
+#### 4. Make sure the backend is running
+- When developing locally with a backend, you may want the backend api to automatically start when you run `pnpm nx serve {{APP_NAME}}`. To do this, edit the `package.json` with,
+```json
+  "nx": {
+    "targets": {
+      "serve": {
+        "dependsOn": [
+          "@newrepo/api:serve"
+        ]
+      }
+    }
+  }
+```
+or,
+```json
+ "nx": {
+    "targets": {
+      "serve": {
+        "dependsOn": [
+          {
+            "target": "serve",
+            "projects": ["api"]
+          }
+        ]
+      }
+    }
+  }
+```

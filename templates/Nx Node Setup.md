@@ -19,14 +19,14 @@ pnpm nx g @nx/node:{{app | lib}} {{PATH}}/{{APP_NAME}}
 #### 4. TSX
 - [ ] Install package
 ```bash
-pnpm add -D tsx
+pnpm add -wD tsx
 ```
 - [ ] Configure `project.json`
 ```bash
 "serve": {
   "executor": "nx:run-commands",
   "options": {
-    "command": "npx tsx watch src/main.ts",
+    "command": "tsx watch src/main.ts",
     "cwd": "{{DIR OF APP / LIB}}", // i.e "apps/api", 
     "color": true
   }

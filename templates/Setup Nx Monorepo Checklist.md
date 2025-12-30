@@ -28,7 +28,7 @@ echo "node_modules\n.DS_Store\ndist\ntmp\n.nx/cache" > .gitignore
 pnpm init
 ```
 
-* [ ] **Update Root Package Name (Crucial Step)**
+* [ ] Update Root Package Name
 `pnpm init` defaults the name to the folder name (e.g., `"my-monorepo"`). Change this to your scoped organization name immediately to establish ownership.
 * **Action:** Open `package.json`
 * **Change:** `"name": "my-monorepo"` → `"name": "@mycompany/source"` (or `@mycompany/root`)
@@ -45,7 +45,7 @@ packages:
 - [ ] Continue with specific `Nx bridge setup`
 
 #### Nx Guided
-- [ ] **Init Workspace:** `npx create-nx-workspace@latest`
+- [ ] **Init Workspace:** `pnpm dlx create-nx-workspace {{scope}} --workspaces`
     - [ ] **Name:** (e.g., `my-org` or `my-project`)
     - [ ] **Stack:** Choose `Integrated` (Strict plugins) or `Package-based` (Flexible/Turborepo style)
     - [ ] **CI:** Select `GitHub Actions` or `Skip` for now

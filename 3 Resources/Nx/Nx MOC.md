@@ -25,7 +25,7 @@ The fundamental building blocks you need to understand this topic, organized by 
 
 - [[Project Graph]]
 
-- [Topic 2]
+- [[Nx Generators]]
 	- [[Concept 1]]
 
 ---
@@ -37,7 +37,10 @@ The fundamental building blocks you need to understand this topic, organized by 
 - [[Canvas 2]]
 
 ---
+### Troubleshooting
+- [[Incorrect node version]]
 
+---
 ### Open Questions
 *My active research agenda.  All unanswered questions on this topic, linked from here*
 
