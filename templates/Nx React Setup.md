@@ -2,12 +2,12 @@
 
 #### 1. 🔌 Install Plugin
 - [ ] **Run in terminal:**
-  `pnpm add -D @nx/react`
+  `pnpm nx add @nx/react`
 
 #### 2. 🏗️ Generate Application
 - [ ] **Run generator:**
 ```bash
-pnpm nx g @nx/react:app apps/client/{{APP_NAME}}
+pnpm nx g @nx/react:{{app | lib}} {{APP PATH}}/{{APP_NAME}}
 ```
 
 #### 3. ✅ Verify Targets

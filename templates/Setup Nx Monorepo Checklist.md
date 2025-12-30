@@ -6,6 +6,45 @@
     - *If missing:* `pnpm install -g nx@latest`
 
 #### 🏗️ Workspace Creation
+#### Manual
+
+- [ ] Create and enter directory 
+```bash
+mkdir my-new-workspace && cd my-new-workspace
+```
+
+- [ ] Initialize git
+```bash
+git init
+```
+
+- [ ] Create `.gitignore`
+```bash
+echo "node_modules\n.DS_Store\ndist\ntmp\n.nx/cache" > .gitignore
+```
+
+- [ ] Initialize package manager
+```bash
+pnpm init
+```
+
+* [ ] **Update Root Package Name (Crucial Step)**
+`pnpm init` defaults the name to the folder name (e.g., `"my-monorepo"`). Change this to your scoped organization name immediately to establish ownership.
+* **Action:** Open `package.json`
+* **Change:** `"name": "my-monorepo"` → `"name": "@mycompany/source"` (or `@mycompany/root`)
+* *Tip:* Also ensure `"private": true` is set to prevent accidental publishing of the entire repo.
+
+- [ ] create `pnpm-workspace.yaml`
+```yaml
+packages:
+	- 'apps/*'
+	- 'libs/*'
+ ```
+
+- [ ] `nx init`
+- [ ] Continue with specific `Nx bridge setup`
+
+#### Nx Guided
 - [ ] **Init Workspace:** `npx create-nx-workspace@latest`
     - [ ] **Name:** (e.g., `my-org` or `my-project`)
     - [ ] **Stack:** Choose `Integrated` (Strict plugins) or `Package-based` (Flexible/Turborepo style)
