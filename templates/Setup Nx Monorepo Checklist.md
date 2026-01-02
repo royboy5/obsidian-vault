@@ -52,6 +52,10 @@ packages:
 - [ ] **Navigate:** `cd <workspace-name>`
 - [ ] **Git:** Verify `git init` ran automatically. If not, run it.
 
+**NOTES:***
+- Some of the generated code varies with the framework selected.  For example, some uses @org/source and some uses @app-name
+- 
+
 #### ⚙️ Tooling & Config
 - [ ] **VS Code:** Install the **Nx Console** extension.
 - [ ] **Prettier:** Ensure `.prettierrc` exists in the root.

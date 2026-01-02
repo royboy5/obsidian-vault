@@ -11,7 +11,7 @@
 #### 2. 🏗️ Generate Application
 - [ ] **Run generator:**
 ```bash
-pnpm nx g @nx/react:app packages/client/web
+pnpm nx g @nx/react:app app/web
 ```
 or,
 ```bash
