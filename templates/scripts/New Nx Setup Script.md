@@ -1,7 +1,7 @@
 <%*
 // 1. CONFIGURATION
 // Ensure this matches the filename of your template exactly
-const templateName = "Setup Nx Monorepo Checklist;
+const templateName = "Setup Nx Monorepo Checklist";
 
 // 2. ASK FOR MONOREPO NAME
 const repoName = await tp.system.prompt("Enter Monorepo Name (e.g. my-org):");
@@ -19,9 +19,11 @@ if (activeFile) {
     const docsPath = `${activeFile.parent.path}/docs/setup`;
     const docsExists = await app.vault.adapter.exists(docsPath);
     
-    if (docsExists) {
-        targetFolder = app.vault.getAbstractFileByPath(docsPath);
+    if (!docsExists) {
+        // IF MISSING: Create it!
+        await app.vault.createFolder(docsPath);
     }
+    targetFolder = app.vault.getAbstractFileByPath(docsPath);
 }
 
 // 4. CREATE THE NOTE

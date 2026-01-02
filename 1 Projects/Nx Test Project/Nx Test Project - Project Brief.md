@@ -1,7 +1,7 @@
 ---
 created: 2025-12-20 09:56
 status: todo
-tags: 
+tags:
   - project
   - brief
 ---
@@ -15,7 +15,7 @@ Learning NX by building a React and Electron frontend.  With a Hono API backend.
 
 
 ## 2. The Problem
-*What problem is this project trying to solve?*
+*What problem is this project trying to solve?*I
 - 
 
 ## 3. The Goal & Success Metrics

@@ -6,6 +6,20 @@
     - *If missing:* `pnpm install -g nx@latest`
 
 #### 🏗️ Workspace Creation
+
+#### Nx Guided
+
+- [ ] **Init Workspace:** `pnpm dlx create-nx-workspace {{scope}} --workspaces`
+    - [ ] **Name:** (e.g., `my-org` or `my-project`)
+    - [ ] **Stack:** Choose `Integrated` (Strict plugins) or `Package-based` (Flexible/Turborepo style)
+    - [ ] **CI:** Select `GitHub Actions` or `Skip` for now
+- [ ] **Navigate:** `cd <workspace-name>`
+- [ ] **Git:** Verify `git init` ran automatically. If not, run it.
+- [ ] Continue with specific `Nx bridge setup`
+
+**NOTES:***
+- Some of the generated code varies with the framework selected.  For example, some uses @org/source and some uses @app-name
+
 #### Manual
 
 - [ ] Create and enter directory 
@@ -43,18 +57,6 @@ packages:
 
 - [ ] `nx init`
 - [ ] Continue with specific `Nx bridge setup`
-
-#### Nx Guided
-- [ ] **Init Workspace:** `pnpm dlx create-nx-workspace {{scope}} --workspaces`
-    - [ ] **Name:** (e.g., `my-org` or `my-project`)
-    - [ ] **Stack:** Choose `Integrated` (Strict plugins) or `Package-based` (Flexible/Turborepo style)
-    - [ ] **CI:** Select `GitHub Actions` or `Skip` for now
-- [ ] **Navigate:** `cd <workspace-name>`
-- [ ] **Git:** Verify `git init` ran automatically. If not, run it.
-
-**NOTES:***
-- Some of the generated code varies with the framework selected.  For example, some uses @org/source and some uses @app-name
-- 
 
 #### ⚙️ Tooling & Config
 - [ ] **VS Code:** Install the **Nx Console** extension.
