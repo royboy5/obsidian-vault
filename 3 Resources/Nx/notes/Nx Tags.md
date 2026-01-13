@@ -232,6 +232,5 @@ This config creates a rigid grid for your code:
 
 ## Open Questions
 *What does this make me wonder about? What am I still curious about?*
-- Q - What are good naming conventions for scopes?
-
-
+- Q - What are good naming conventions for scopes? 
+	- [[Nx Tagging Naming]]
