@@ -1,5 +1,6 @@
 {
   "showLineNumber": false,
   "alwaysUpdateLinks": true,
-  "promptDelete": false
+  "promptDelete": false,
+  "openBehavior": "daily"
 }

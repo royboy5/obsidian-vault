@@ -8,12 +8,14 @@ const configMap = {
         tag: "React App",
         vars: { TYPE: "app", TYPE_LABEL: "Application", FLAGS: "--bundler=vite --style=css" }
     },
-    "Node API": { 
-        file: "Nx Node Setup", 
-        path: "apps", 
-        tag: "Node API",
-        vars: { TYPE: "app", TYPE_LABEL: "API", FLAGS: "--framework=express" }
-    },
+	"Node API": { 
+	    file: "Nx Node Setup", 
+	    path: "apps", 
+	    tag: "Node API",
+	    needsFramework: true,
+	    needsTestSelection: true,
+	    vars: { TYPE: "app", TYPE_LABEL: "API", FLAGS: "" }
+	},
 
     // --- SHARED LIBS (No Domain, No Port) ---
     "React Shared Lib": { 
@@ -56,6 +58,7 @@ const configMap = {
 };
 
 const stackOptions = Object.keys(configMap);
+const GLOBAL_FLAGS = "--useProjectJson=true";
 
 // 2. INPUTS
 const selectedOption = await tp.system.suggester(stackOptions, stackOptions);
@@ -80,6 +83,26 @@ if (config.vars.TYPE === 'app' || config.needsPort) {
     port = await tp.system.prompt(`Assign a Port Number (default: ${defaultPort}):`) || defaultPort;
 }
 
+// --- LOGIC C: ASK FOR FRAMEWORK --- 
+if (config.needsFramework) { 
+	const frameworkOptions = ["none", "express", "fastify", "koa", "nest"]; 
+	const selectedFramework = await tp.system.suggester(frameworkOptions, frameworkOptions) ?? "none"; 
+	config.vars.FLAGS = `--framework=${selectedFramework}`; 
+}
+
+// --- LOGIC D: TEST & LINTER SELECTION ---
+if (config.needsTestSelection) {
+    const testOptions = ["No Tests (Linter Only)", "Standard (Jest)"];
+    const testChoice = await tp.system.suggester(testOptions, testOptions);
+    
+    if (testChoice === "No Tests (Linter Only)") {
+        // Explicitly disable test runners
+        config.vars.FLAGS += " --linter=eslint --unitTestRunner=none --e2eTestRunner=none";
+    } else if (testChoice === "Standard (Jest)") {
+        // Explicitly enable standard Nx defaults
+        config.vars.FLAGS += " --linter=eslint --unitTestRunner=jest --e2eTestRunner=jest";
+    }
+}
 const appName = await tp.system.prompt("What is the name? (e.g., product-list)");
 
 // 3. GENERATE CONTENT
@@ -94,7 +117,14 @@ snippetContent = snippetContent.replaceAll("{{PORT}}", port ? `--port=${port}` :
 
 // Replace dynamic vars (Using safe concatenation to avoid syntax errors)
 for (const [key, value] of Object.entries(config.vars || {})) {
-    snippetContent = snippetContent.replaceAll("{{" + key + "}}", value);
+    let finalValue = value;
+    
+    if (key === "FLAGS") {
+        // Appends the global flag and cleans up extra spaces
+        finalValue = `${value} ${GLOBAL_FLAGS}`.trim();
+    }
+
+    snippetContent = snippetContent.replaceAll("{{" + key + "}}", finalValue);
 }
 
 // 4. CONSTRUCT NOTE WITH PROPERTIES

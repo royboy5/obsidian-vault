@@ -1,19 +1,21 @@
 # 🦋 Setup: Nx Monorepo
 
 #### 📋 Prerequisites
-- [x] **Node.js:** Verify installed (`node -v`)
-- [x] **Nx CLI:** Verify global install (`nx --version`)
-    - *If missing:* `pnpm install -g nx@latest`
+- [ ] **Node.js:** Verify installed (`node -v`)
+- [ ] **Nx CLI:** Verify global install (`nx --version`)
+    - *If missing:* `pnpm add -g nx@latest`
 
 #### 🏗️ Workspace Creation
-- [x] **Init Workspace:** `npx create-nx-workspace@latest`
+
+#### Nx Guided
+
+- [x] **Init Workspace:** `pnpm dlx create-nx-workspace {{scope}} --workspaces`
     - [x] **Name:** (e.g., `my-org` or `my-project`)
-    - [ ] **Stack:** Choose `Integrated` (Strict plugins) or `Package-based` (Flexible/Turborepo style)
-    - [ ] **CI:** Select `GitHub Actions` or `Skip` for now
+    - [x] ***starter***: `Custom`
+    - [x] **Stack:** Choose `None` 
 - [x] **Navigate:** `cd <workspace-name>`
 - [ ] **Git:** Verify `git init` ran automatically. If not, run it.
+- [ ] Continue with specific `Nx bridge setup`
 
-#### ⚙️ Tooling & Config
-- [ ] **VS Code:** Install the **Nx Console** extension.
-- [ ] **Prettier:** Ensure `.prettierrc` exists in the root.
-- [ ] **Nx Cloud:** Run `npx nx connect` (Optional: Enables remote caching).
+**NOTES:***
+- Some of the generated code varies with the framework selected.  For example, some uses @org/source and some uses @app-name
