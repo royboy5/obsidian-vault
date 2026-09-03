@@ -1,0 +1,11 @@
+{
+	"nodes":[
+		{"id":"86b949a6a9b8039d","type":"group","x":-280,"y":-440,"width":1320,"height":1360,"label":"System Architecture"},
+		{"id":"2ff4c38afd66d65c","type":"group","x":-1240,"y":-440,"width":860,"height":1360,"label":"Dev Cockpit"},
+		{"id":"f31eeea2fb213f92","type":"text","text":"# 🏐 Hudl-Up\n\n**Click any card to drill into that domain** — data models, API routes, and build order live in the linked note.","x":-170,"y":-840,"width":400,"height":180},
+		{"id":"0b4ff70d7bea4cd2","type":"file","file":"1 Projects/Hudl-Up/Hudl-Up - Project Brief.md","subpath":"#Project Brief Hudl-Up","x":-1190,"y":-389,"width":760,"height":200},
+		{"id":"488002789eb8353d","type":"file","file":"1 Projects/Hudl-Up/docs/Monorepo & Toolchain.md","subpath":"#Common commands","x":-1190,"y":-120,"width":760,"height":400},
+		{"id":"2f37c2e590d976b6","x":-1240,"y":1000,"width":860,"height":600,"type":"file","file":"1 Projects/Hudl-Up/Hudl-Up - Active Tasks.md"}
+	],
+	"edges":[]
+}

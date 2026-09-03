@@ -1,0 +1,29 @@
+{
+	"nodes":[
+		{"id":"grp-products","type":"group","x":0,"y":300,"width":1720,"height":220,"color":"4","label":"🏐 Products — independently deployable & purchasable"},
+		{"id":"grp-crosscutting","type":"group","x":1780,"y":40,"width":340,"height":740,"color":"6","label":"🔗 Cross-Cutting Concepts (used by every product)"},
+		{"id":"grp-packages","type":"group","x":0,"y":560,"width":840,"height":200,"color":"3","label":"📦 Shared Packages (packages/*)"},
+		{"id":"grp-infra","type":"group","x":880,"y":560,"width":840,"height":200,"color":"3","label":"🛠️ Infrastructure & Monorepo"},
+		{"id":"grp-foundation","type":"group","x":660,"y":40,"width":400,"height":180,"color":"6","label":"🧱 Foundation — build this first"},
+		{"id":"title","type":"text","text":"# 🏐 Volleyball Suite — Home Canvas\n\nAI-powered volleyball coaching & club-management platform. **4 independently-purchasable products** sit on top of **1 shared identity foundation**, all inside a **Moon monorepo**. Each product owns its own Postgres DB (Path B architecture) — no shared DB entanglement except identity.\n\n**Click any card to drill into that domain** — data models, API routes, and build order live in the linked note.","x":0,"y":-200,"width":1720,"height":170},
+		{"id":"n-clubmanager","type":"file","file":"Club Manager.md","x":40,"y":350,"width":380,"height":130,"color":"1"},
+		{"id":"n-ai","type":"file","file":"AI Assistant.md","x":880,"y":350,"width":380,"height":130,"color":"5"},
+		{"id":"n-playerportal","type":"file","file":"Player Portal.md","x":1300,"y":350,"width":380,"height":130,"color":"4"},
+		{"id":"n-packages","type":"file","file":"Shared Packages.md","x":40,"y":610,"width":760,"height":110},
+		{"id":"n-monorepo","type":"file","file":"Monorepo & Toolchain.md","x":920,"y":610,"width":760,"height":110},
+		{"id":"n-buildorder","type":"text","text":"## 🧭 Recommended Build Order (high level)\n\n1. Bare Moon workspace\n2. **Identity service** — Better Auth, PlayerProfile, Org, Membership, Billing foundation\n3. `packages/auth` + `packages/billing` + `packages/identity`\n4. **Club Manager** (first product, full stack end-to-end)\n5. **Coach** (second product)\n6. **AI Assistant** (third product, pgvector)\n7. Admin Dashboard (platform routes)\n8. Mobile apps (Flutter) — UI over existing APIs\n9. Production — swap Ollama → Claude, deploy DBs, Nginx, CI/CD\n\n→ Full detail: [[Monorepo & Toolchain]] · [[shared]]","x":0,"y":800,"width":1720,"height":260},
+		{"id":"n-coach","type":"file","file":"Coach.md","x":460,"y":350,"width":380,"height":130,"color":"2"},
+		{"id":"n-multitenancy","type":"file","file":"Multi-Tenancy & RLS.md","x":1810,"y":100,"width":280,"height":110},
+		{"id":"n-billing","type":"file","file":"Billing Model.md","x":1810,"y":250,"width":280,"height":110},
+		{"id":"n-authsecurity","type":"file","file":"Auth Middleware & Security.md","x":1810,"y":400,"width":280,"height":110},
+		{"id":"n-sourceindex","type":"text","text":"📚 **Full source docs**\n\n[[shared]] · [[identity]] · [[auth-orgs]] · [[calendar]] · [[communication]] · [[tryouts]] · [[teams]] · [[playbook]] · [[ai]] · [[platform]]\n\n(these hub notes summarize & link out — full detail lives in the originals)","x":1810,"y":560,"width":280,"height":200},
+		{"id":"n-identity","type":"file","file":"Identity Service.md","x":690,"y":90,"width":340,"height":100,"color":"6"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"n-identity","fromSide":"bottom","toNode":"n-clubmanager","toSide":"top","label":"auth + org context"},
+		{"id":"e2","fromNode":"n-identity","fromSide":"bottom","toNode":"n-coach","toSide":"top"},
+		{"id":"e3","fromNode":"n-identity","fromSide":"bottom","toNode":"n-ai","toSide":"top"},
+		{"id":"e4","fromNode":"n-identity","fromSide":"bottom","toNode":"n-playerportal","toSide":"top"},
+		{"id":"e5","fromNode":"n-packages","fromSide":"top","toNode":"grp-products","toSide":"bottom","label":"imported by every *-api"}
+	]
+}

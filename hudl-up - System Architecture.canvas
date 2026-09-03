@@ -1,0 +1,25 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","x":60,"y":-140,"width":1960,"height":120,"text":"# 🏐 hudl-up — System Architecture\nMulti-tenant volleyball coaching & club management suite. Click any card below to open its own architecture canvas (features, data model, API routes).\n\nBuild-order view (Moon workspace, packages/, Step 1→9) lives in the separate build-map canvas."},
+		{"id":"legend","type":"text","x":60,"y":280,"width":320,"height":140,"color":"6","text":"**How this works**\nEach card is a **file node** pointing at its own `.canvas`. Click the card to open it — that canvas has the real detail (DB tables, routes, features).\n\nThis top canvas only shows *shape*, not detail."},
+		{"id":"hub","type":"text","x":880,"y":680,"width":320,"height":160,"color":"6","text":"# hudl-up\n\nIdentity + billing foundation shared by 4 purchasable products.\nMoon monorepo · Path B (own Postgres per product) · Hono APIs · Flutter mobile / React web"},
+		{"id":"spoke-identity","type":"file","file":"Identity Service - Architecture.canvas","x":880,"y":100,"width":320,"height":140,"color":"5"},
+		{"id":"spoke-shared","type":"file","file":"Shared Foundation - Architecture.canvas","x":1400,"y":280,"width":320,"height":140,"color":"3"},
+		{"id":"spoke-admin","type":"file","file":"Admin Dashboard - Architecture.canvas","x":1700,"y":680,"width":320,"height":140,"color":"6"},
+		{"id":"spoke-player","type":"file","file":"Player Portal - Architecture.canvas","x":1400,"y":1080,"width":320,"height":140,"color":"5"},
+		{"id":"spoke-ai","type":"file","file":"AI Assistant - Architecture.canvas","x":880,"y":1260,"width":320,"height":140,"color":"1"},
+		{"id":"spoke-coach","type":"file","file":"Coach - Architecture.canvas","x":360,"y":1080,"width":320,"height":140,"color":"2"},
+		{"id":"spoke-club","type":"file","file":"Club Manager - Architecture.canvas","x":60,"y":680,"width":320,"height":140,"color":"4"}
+	],
+	"edges":[
+		{"id":"e1","fromNode":"hub","fromSide":"top","toNode":"spoke-identity","toSide":"bottom"},
+		{"id":"e2","fromNode":"hub","fromSide":"top","toNode":"spoke-shared","toSide":"bottom"},
+		{"id":"e3","fromNode":"hub","fromSide":"right","toNode":"spoke-admin","toSide":"left"},
+		{"id":"e4","fromNode":"hub","fromSide":"bottom","toNode":"spoke-player","toSide":"top"},
+		{"id":"e5","fromNode":"hub","fromSide":"bottom","toNode":"spoke-ai","toSide":"top"},
+		{"id":"e6","fromNode":"hub","fromSide":"bottom","toNode":"spoke-coach","toSide":"top"},
+		{"id":"e7","fromNode":"hub","fromSide":"left","toNode":"spoke-club","toSide":"right"},
+		{"id":"e8","fromNode":"spoke-club","fromSide":"bottom","toNode":"spoke-coach","toSide":"top","label":"Event(type:match) → matchId"},
+		{"id":"e9","fromNode":"spoke-coach","fromSide":"right","toNode":"spoke-ai","toSide":"left","label":"animated play → AI review"}
+	]
+}
