@@ -8,6 +8,30 @@
 ```bash
 pnpm add -Dw @types/node
 ```
+## 🔧 Toolchain Setup - Enable the language
+
+* Add to `.prototools` (if necessary):
+```toml
+node = "26.x"
+pnpm = "11.x"
+```
+
+- Install tools (if necessary)
+```bash
+proto use
+```
+
+* Add to `.moon/toolchains.yml`:
+```yaml
+# Enable JavaScript
+javascript:
+  packageManager: 'pnpm'
+
+# Enable Node.js and pnpm
+node: {}
+pnpm: {}
+```
+*Note: versions are empty here because it will inherit the proto pin*
 
 ## 📁 Project Setup
 
@@ -42,34 +66,26 @@ pnpm init
 }
 ```
 
-## 🔧 Toolchain Setup
-
-* Add to `.moon/toolchains.yml`:
-```yaml
-node:
-  version: "26.0.0"
-  packageManager: pnpm
-  addEnginesConstraint: true
-typescript:
-  createMissingConfig: true
-  routeOutDirToCache: true
-  syncProjectReferences: true
-```
-
-* Add to `.prototools` (if necessary):
-```toml
-node = "26.x"
-pnpm = "11.x"
-```
-
-- Install tools (if necessary)
-```bash
-proto use
-```
 
 * Install tsx at the project root:
 ```bash
-pnpm add -D tsx
+pnpm add -D tsx tsdown
+```
+
+- `tsdown.config.ts`
+```ts
+import { defineConfig } from 'tsdown';
+
+export default defineConfig({
+  entry: ["src/index.ts"],
+  platform: "node",
+  format: "esm",
+  dts: false,
+  clean: true,
+  outDir: "dist",
+  // package.json has "type: module", so emit dist/index.js (not .mjs)
+  fixedExtension: false;
+});
 ```
 
 * Add tasks to project `moon.yml`:
@@ -85,13 +101,23 @@ project:
   maintainers: ['miles.johnson']
 tasks:
   dev:
-    command: pnpm tsx watch src/index.ts
+    command: tsx watch src/index.ts
   build:
-    command: pnpm tsc
+	# Bundler command here.  This will use tsdown
+    command: tsdown
+    inputs:
+	  - src/**/*
+	  - tsdown.config.ts
+	  - tsconfig.json
+	  - /tsconfig.options.json
+	outputs:
+	  - dist
   start:
     command: node dist/index.js
-  typecheck:
-    command: pnpm tsc --noEmit
+    deps:
+      - build
+	options:
+	  persistent: false
 ```
 
 ## 📝 Notes

@@ -22,9 +22,17 @@ proto use
 packages:
   - 'apps/*'
   - 'packages/*'
+allowBuilds:
+  esbuild: true
 ```
 
-* Create root `package.json` at the workspace root:
+*  Initialize `package.json` on repo root:
+```bash
+pnpm init
+```
+
+- Updated `package.json`
+
 ```json
 {
   "name": "@<org>/root",

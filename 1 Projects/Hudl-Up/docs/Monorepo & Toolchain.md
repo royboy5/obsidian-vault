@@ -18,8 +18,7 @@ Lightweight, language-agnostic task runner — works cleanly with both Node (Hon
 - [[Moonrepo Toolchain - PNPM]]
 - [[Moonrepo Toolchain - Node TypeScript]]
 - [[Moonrepo Toolchain - TypeScript Config]]
-- [[Moonrepo Toolchain - Prettier]]
-- [[Moonrepo Toolchain - ESLint]]]]
+- [[Moonrepo Toolchain - Biome]]
 - [[Moonrepo Toolchain - React Vite]]
 - [[Moonrepo Toolchain - Dart Flutter]]
 

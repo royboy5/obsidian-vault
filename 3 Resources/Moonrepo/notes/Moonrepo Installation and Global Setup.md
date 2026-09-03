@@ -16,9 +16,10 @@ bash <(curl -fsSL https://moonrepo.dev/install/proto.sh)
 
 ## Installation
 - When using proto to install moon, it will install moon to `~/.proto/tools/moon` and make the binary available at `~/.proto/bin`.
+- Should be done in repo root.
 
 ```bash
-proto install moon
+proto install moon --pin
 ```
 
 ## Upgrading

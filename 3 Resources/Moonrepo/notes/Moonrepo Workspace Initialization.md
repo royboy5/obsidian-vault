@@ -47,12 +47,14 @@ vcs:
 ```
   
 * Git: Verify `git init` ran. If not, run it.
-
+	* update `.gitignore`
+		* i.e. `node_modules`
 
 ## 🔧 Toolchain Setup
 
 Run the relevant toolchain template(s) for your stack:
 
+* [[Moonrepo Toolchain - PNPM]]
 * [[Moonrepo Toolchain - Node TypeScript]]
 * [[Moonrepo Toolchain - React Vite]]
 * [[Moonrepo Toolchain - SvelteKit]]
@@ -66,6 +68,7 @@ Run the relevant toolchain template(s) for your stack:
 Run these for every repo — they apply monorepo-wide:
 
 * [[Moonrepo Toolchain - TypeScript Config]]
+* [[Moonrepo Toolchain - Biome]]
 * [[Moonrepo Toolchain - ESLint]]
 * [[Moonrepo Toolchain - Prettier]]
 

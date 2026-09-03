@@ -6,7 +6,7 @@
 
 ## 🔧 Setup
 
-If using PNPM on multiple apps/packages, we need to create a pnpm workspace.
+If using PNPM on multiple apps/packages, we need to create a pnpm workspace. (skip if this is already done)
 
 Initialize `package.json` 
 ```bash
@@ -37,13 +37,22 @@ pnpm add -D -w typescript
 
 * Create `.moon/tasks/typescript.yml`:
 ```yaml
+# Matches 'language: typescript' in each projects'moon.yml
+# toolchains: typescript - turns on the TS plugin
+# Will only be inherited by projects that has language set to typescript
+
+inheritedBy:
+  languages: typescript
+  
+# Build will be used by a bundler (tsdown)
 tasks:
   typecheck:
     command:
       - 'tsc'
-      - '--build'
+      # - '--build'
       - '--pretty'
-      - '--verbose'
+      # - '--verbose'
+      - '--noEmit'
     inputs:
       - 'src/**/*'
       - 'tests/**/*'
@@ -51,8 +60,8 @@ tasks:
       - 'tsconfig.json'
       - 'tsconfig.*.json'
       - '/tsconfig.options.json'
-    outputs:
-      - 'lib'
+    # outputs:
+      # - 'lib'
 ```
 
 ## Root-level Configuration
@@ -63,7 +72,9 @@ tasks:
   "compilerOptions": {
     // Your custom options
     "moduleResolution": "nodenext",
-    "target": "es2022"
+    "target": "es2022",
+    "skipLibCheck": true,
+    "strict": true
   }
 }
 ```
@@ -74,34 +85,36 @@ tasks:
   "extends": "./tsconfig.options.json",
   "files": [],
   // All project references in the repo
-  "references": []
+  "references": [
+	  // path of apps / packages
+	  {
+		  "path": "./apps/<appName>",
+		  "path": "./packages/<packageName>"
+	  }
+  ]
 }
 ```
 
 ## Project-level Configuration
 
 * Add `tsconfig.json` to each project:
+
+***Node***
 ```json
 {
   // Extend the root compiler options
   "extends": "../../tsconfig.options.json",
   "compilerOptions": {
     // Declarations are written here
-    "outDir": "lib"
+    "noEmit": true,
+    "moduleResolution": "bundler",
+    "outDir": "../../.moon/cache/types/apps/<appName>"
   },
   // Include files in the project
   "include": ["src/**/*", "tests/**/*"],
   // Depends on other projects
   "references": []
 }
-```
-
-* Optionally extend the global `typecheck` task in project `moon.yml`:
-```yaml
-tasks:
-  typecheck:
-    args:
-      - '--force'
 ```
 
 ## 📝 Notes
