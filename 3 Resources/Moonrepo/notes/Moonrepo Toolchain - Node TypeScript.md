@@ -5,9 +5,12 @@
 ## Root-level Config
 
 - Add `@types/node` to the root `package.json` if multiple apps/packages use typescript. We want to have a centralized version of Node across the entire repo.
+
 ```bash
 pnpm add -Dw @types/node
 ```
+
+- (Optional) Can update root `package.json`
 ## 🔧 Toolchain Setup - Enable the language
 
 * Add to `.prototools` (if necessary):
@@ -92,6 +95,14 @@ export default defineConfig({
 ```yaml
 layer: 'application'
 language: 'typescript'
+
+# `backend` - Server-side APIs, etc.
+# `data` - Data sources, database layers, etc. v2.0.0
+# `frontend` - Client-side user interfaces, etc.
+# `infrastructure` - Cloud/server infrastructure, Docker, etc.
+# `systems` - Low-level systems programming.
+# `unknown` (default) - When not configured.
+stack: 'backend'
 
 project:
   name: 'moon'

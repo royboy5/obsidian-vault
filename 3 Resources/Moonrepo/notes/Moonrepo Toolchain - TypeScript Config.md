@@ -18,7 +18,11 @@ Update `package.json`:
 {
   "name": "@<org>/<monorepo>",
   "version": "0.0.0",
-  "private": true
+  "private": true,
+  // Optional but suggested
+  "scripts": {
+	  "check": "moon check --all"
+  }
 }
 ```
 
@@ -74,7 +78,12 @@ tasks:
     "moduleResolution": "nodenext",
     "target": "es2022",
     "skipLibCheck": true,
-    "strict": true
+    "strict": true,
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "incremental": true,
+    "noEmitOnError": true
   }
 }
 ```
@@ -95,6 +104,8 @@ tasks:
 }
 ```
 
+> `extends` here is harmless but functionally inert — `"files": []` means this config never compiles anything itself, so the inherited
+> `compilerOptions` never actually apply to any file. Kept for convention (matches moon's own docs); safe to drop if that bothers you.
 ## Project-level Configuration
 
 * Add `tsconfig.json` to each project:
@@ -116,6 +127,32 @@ tasks:
   "references": []
 }
 ```
+
+
+## Internal / shared packages
+
+For packages consumed only inside the monorepo (not published to npm),
+skip giving them a build step — point `package.json` straight at source so
+consuming apps type-check and bundle it directly, no dist folder to keep in
+sync:
+```json
+{
+  "name": "@<org>/shared-types",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": { ".": "./src/index.ts" }
+}
+```
+Consuming projects depend on it the normal workspace way:
+```json
+{ "dependencies": { "@<org>/shared-types": "workspace:*" } }
+```
+> The most common breakage here: a mismatch between the actual entry file
+> extension and what `main`/`types`/`exports` point at (`.ts` vs `.tsx`).
+> Module resolution fails silently with "cannot find module" if these drift.
+
 
 ## 📝 Notes
 

@@ -45,11 +45,27 @@ vcs:
   client: 'git'
   defaultBranch: 'main'
 ```
-  
+
+## Git
+
 * Git: Verify `git init` ran. If not, run it.
 	* update `.gitignore`
 		* i.e. `node_modules`
+```
+# moon
+.moon/cache
+.moon/docker
 
+# node
+node_modules/
+.pnpm-store/
+
+# typescript
+lib/
+dist/
+*.tsbuildinfo
+
+```
 ## 🔧 Toolchain Setup
 
 Run the relevant toolchain template(s) for your stack:
