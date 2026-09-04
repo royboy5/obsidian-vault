@@ -53,6 +53,7 @@ cd apps/<project>  # or packages/<project>
 ```yaml
 layer: 'application'   # or 'library' for packages
 language: 'typescript'
+stacks: 'backend'
 ```
 
 * Initialize `package.json` (run from inside the project folder, not the apps or packages folder):
@@ -112,25 +113,77 @@ project:
   maintainers: ['miles.johnson']
 tasks:
   dev:
-    command: tsx watch src/index.ts
+    command: 'tsx watch src/index.ts'
   build:
 	# Bundler command here.  This will use tsdown
-    command: tsdown
+    command: 'tsdown'
     inputs:
-	  - src/**/*
-	  - tsdown.config.ts
-	  - tsconfig.json
-	  - /tsconfig.options.json
+	  - 'src/**/*'
+	  - 'tsdown.config.ts'
+	  - 'tsconfig.json'
+	  - '/tsconfig.options.json'
 	outputs:
-	  - dist
+	  - 'dist'
   start:
-    command: node dist/index.js
+    command: 'node dist/index.js'
     deps:
-      - build
+      - 'build'
 	options:
 	  persistent: false
 ```
 
+
+## Multiple node apps
+
+- We can abstract the tasks in a node app to a moon task for all to have.  The apps need to match all `inheritedBy`.
+- `.moon/tasks/node-backend.yml`
+
+```yaml
+inheritedBy:
+  languages: 'typescript'
+  stacks: 'backend'
+  layers: 'applications'
+  
+tasks:
+  dev:
+    command: 'tsx watch src/index.ts'
+  build:
+    command: 'tsdown'
+    inputs:
+      - 'src/**/*'
+      - 'tsdown.config.ts'
+      - 'tsconfig.json'
+      - 'tsconfig.options.json'
+    outputs:
+      - 'dist'
+  start:
+    command: 'node dist/index.js'
+    deps:
+      - 'build'
+    options:
+      persistent: false
+```
+
+- `moon.yml` will only be
+```yaml
+layer: 'application'
+language: 'typescript'
+
+# `backend` - Server-side APIs, etc.
+# `data` - Data sources, database layers, etc. v2.0.0
+# `frontend` - Client-side user interfaces, etc.
+# `infrastructure` - Cloud/server infrastructure, Docker, etc.
+# `systems` - Low-level systems programming.
+# `unknown` (default) - When not configured.
+stack: 'backend'
+
+project:
+  name: 'moon'
+  description: 'A repo management tool.'
+  channel: '#moon'
+  owner: 'infra.platform'
+  maintainers: ['miles.johnson']
+```
 ## 📝 Notes
 
 * `syncProjectReferences: true` keeps tsconfig paths in sync across packages automatically

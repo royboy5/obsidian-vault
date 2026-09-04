@@ -6,7 +6,7 @@
 
 * Install at the workspace root:
 ```bash
-pnpm add -D -w - E @biomejs/biome
+pnpm add -D -w -.E @biomejs/biome
 ```
 
 - Run init
@@ -56,6 +56,9 @@ pnpx @biomejs/biome init
 
 * Create `.moon/tasks/biome.yml`:
 ```yaml
+inheritedBy:
+  languages: typescript
+
 fileGroups:
   sources:
     - 'src/**/*'
@@ -64,13 +67,31 @@ fileGroups:
 
 tasks:
   lint:
-    command: 'biome'
-    args:
+    command:
+      - 'biome'
+      - 'check'
+      - '.'
+    inputs:
+      - '@group(sources)'
+      - '@group(tests)'
+      - '*.config.*'
+      - 'package.json'
+      - 'tsconfig.json'
+      - 'tsconfig.*.json'
+      - '/biome.json'
+  format:
+    command:
+      - 'biome'
       - 'check'
       - '--write'
       - '.'
     inputs:
       - '@group(sources)'
       - '@group(tests)'
+      - 'package.json'
+      - 'tsconfig.json'
+      - 'tsconfig.*.json'
       - '/biome.json'
+    options:
+      runInCI: false
 ```
