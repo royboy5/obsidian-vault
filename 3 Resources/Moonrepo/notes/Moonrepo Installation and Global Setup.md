@@ -27,10 +27,3 @@ proto install moon --pin
 ```bash
 proto install moon --pin
 ```
-
-
-
-## Open Questions
-*What does this make me wonder about? What am I still curious about?*
-- Q - How does this apply to ...?
-- Q - What is the difference between this and ...?

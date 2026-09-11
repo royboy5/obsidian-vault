@@ -2,6 +2,8 @@
 
 [Moon Prettier Docs](https://moonrepo.dev/docs/guides/examples/prettier)
 
+JS default in this vault is [[Moonrepo Toolchain - Biome]]; use this only if the repo is not on Biome.
+
 ## 🔧 Setup
 
 * Install at the workspace root:
@@ -11,6 +13,9 @@ pnpm add -D -w prettier
 
 * Create `.moon/tasks/prettier.yml`:
 ```yaml
+inheritedBy:
+  languages: 'typescript'
+
 tasks:
   format:
     command:
@@ -60,6 +65,6 @@ node_modules/
 
 * Root-level config is required — Prettier should use the same standards across the whole repo
 * Only 1 `.prettierignore` file is supported per repo — always define it at the root
-* Tasks in `.moon/tasks/` are inherited automatically by all projects — no need to add `format` to each `moon.yml`
+* Empty `inheritedBy` would give Prettier to every project. Filter with `inheritedBy.languages` (filename does not filter)
 * Moon recommends against project-level Prettier configs — use root overrides if you need escape hatches during migrations
 * `--check` is used in CI; configure your editor to run Prettier on save for local formatting

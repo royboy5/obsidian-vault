@@ -1,5 +1,7 @@
 ## 🌙 Moonrepo Toolchain: Go
 
+Not the JS default path. `layer` / `language` / `stack` are moon v2 project fields ([project config](https://moonrepo.dev/docs/config/project), 2026-09-11).
+
 ## 📁 Project Setup
 
 * Create the project folder in the appropriate location:
@@ -20,13 +22,14 @@ go mod init github.com/<org>/<project>
 
 * Create `moon.yml` in the project folder:
 ```yaml
-language: go
-type: application  # or 'library' for packages
+layer: 'application'
+language: 'go'
+stack: 'backend'
 ```
 
 ## 🔧 Toolchain Setup
 
-* Add to `.moon/toolchain.yml`:
+* Add to `.moon/toolchains.yml`:
 ```yaml
 go:
   version: "1.22.0"
@@ -40,8 +43,9 @@ go = "1.22.0"
 
 * Add tasks to project `moon.yml`:
 ```yaml
-language: go
-type: application  # or 'library' for packages
+layer: 'application'
+language: 'go'
+stack: 'backend'
 tasks:
   dev:
     command: go run ./cmd/main.go
@@ -55,6 +59,6 @@ tasks:
 
 ## 📝 Notes
 
-* Go version must be pinned in both `toolchain.yml` and `.prototools`
+* Go version must be pinned in both `.moon/toolchains.yml` and `.prototools`
 * Swap `./cmd/main.go` for your actual entrypoint
 * For shared Go libraries, omit the `dev` and `start` tasks

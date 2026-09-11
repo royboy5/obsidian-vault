@@ -2,6 +2,8 @@
 
 [Moon Rust Docs](https://moonrepo.dev/docs/guides/rust/handbook)
 
+Not the JS default path. `layer` / `language` / `stack` are moon v2 project fields ([project config](https://moonrepo.dev/docs/config/project), 2026-09-11).
+
 ## 📁 Project Setup
 
 * Create the project folder in the appropriate location:
@@ -26,13 +28,14 @@ cargo init --lib
 
 * Create `moon.yml` in the project folder:
 ```yaml
-language: rust
-type: application  # or 'library' for packages
+layer: 'application'
+language: 'rust'
+stack: 'systems'
 ```
 
 ## 🔧 Toolchain Setup
 
-* Add to `.moon/toolchain.yml`:
+* Add to `.moon/toolchains.yml`:
 ```yaml
 rust:
   version: "1.78.0"
@@ -42,8 +45,9 @@ rust:
 
 * Add tasks to project `moon.yml`:
 ```yaml
-language: rust
-type: application  # or 'library' for packages
+layer: 'application'
+language: 'rust'
+stack: 'systems'
 tasks:
   build:
     command: cargo build

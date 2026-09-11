@@ -2,6 +2,8 @@
 
 [Moon ESLint Docs](https://moonrepo.dev/docs/guides/examples/eslint)
 
+JS default in this vault is [[Moonrepo Toolchain - Biome]]; use this only if the repo is not on Biome.
+
 ## 🔧 Setup
 
 * Install at the workspace root:
@@ -9,38 +11,40 @@
 pnpm add -D -w eslint eslint-config-moon
 ```
 
-* Create `.moon/tasks/eslint.yml`:
+* Create `.moon/tasks/eslint.yml`. `lint` is check-only (CI). Do **not** put `--fix` on `lint`.
 ```yaml
+inheritedBy:
+  languages: 'typescript'
+
 tasks:
   lint:
     command:
       - 'eslint'
-      # Support other extensions
       - '--ext'
       - '.js,.jsx,.ts,.tsx'
-      # Always fix and run extra checks
-      - '--fix'
       - '--report-unused-disable-directives'
-      # Dont fail if a project has nothing to lint
       - '--no-error-on-unmatched-pattern'
-      # Do fail if we encounter a fatal error
       - '--exit-on-fatal-error'
-      # Only 1 ignore file is supported, so use the root
       - '--ignore-path'
       - '@in(4)'
-      # Run in current dir
       - '.'
     inputs:
-      # Source and test files
       - 'src/**/*'
       - 'tests/**/*'
-      # Other config files
       - '*.config.*'
-      # Project configs, any format, any depth
       - '**/.eslintrc.*'
-      # Root configs, any format
       - '/.eslintignore'
       - '/.eslintrc.*'
+  format:
+    command:
+      - 'eslint'
+      - '--ext'
+      - '.js,.jsx,.ts,.tsx'
+      - '--fix'
+      - '--no-error-on-unmatched-pattern'
+      - '.'
+    options:
+      runInCI: false
 ```
 
 ## TypeScript Integration
@@ -125,5 +129,6 @@ node_modules/
 
 * `root: true` in `.eslintrc.js` is required — it tells ESLint to stop traversing upwards
 * Only 1 `.eslintignore` file is supported per repo — always define it at the root
-* Tasks in `.moon/tasks/` are inherited automatically by all projects — no need to add `lint` to each `moon.yml`
+* Empty `inheritedBy` would give ESLint to every project. Filter with `inheritedBy.languages` (filename does not filter)
+* `--fix` belongs on `format` with `runInCI: false`, never on the CI `lint` task
 * Do not use `extends` in project-level ESLint configs — ESLint merges configs automatically while traversing upwards

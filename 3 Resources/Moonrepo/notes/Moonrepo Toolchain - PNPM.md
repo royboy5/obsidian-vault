@@ -17,6 +17,20 @@ pnpm = "11.x"
 proto use
 ```
 
+* Open `.moon/toolchains.yml`. For a pnpm + TypeScript workspace (`packageManager` under `javascript`, not `node`; versions in `.prototools`):
+
+```yaml
+javascript:
+  packageManager: 'pnpm'
+# Versions: .prototools (moon versionFromPrototools defaults to true)
+node: {}
+pnpm: {}
+typescript:
+  createMissingConfig: true
+  routeOutDirToCache: true
+  syncProjectReferences: true
+```
+
 - Create `pnpm-workspace.yaml` at the workspace root:
 ```yaml
 packages:
@@ -37,13 +51,11 @@ pnpm init
 {
   "name": "@<org>/root",
   "version": "0.0.0",
-  "private": true,
-  "engines": {
-    "node": ">=26.0.0",
-    "pnpm": ">=11.0.0"
-  }
+  "private": true
 }
 ```
+
+`engines` and `package.json#packageManager` are optional. Prefer `.prototools` as the single pin. Do not also set `version:` under `node` / `pnpm` in `.moon/toolchains.yml`.
 
 * Install dependencies:
 ```bash

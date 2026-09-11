@@ -1,5 +1,7 @@
 ## 🌙 Moonrepo Toolchain: Dart / Flutter
 
+Not the JS default path. Moon has no Dart toolchain — proto installs Flutter; tasks run via `toolchains.default: system`.
+
 ## 📁 Project Setup
 
 * Create the project folder in the appropriate location:
@@ -24,8 +26,9 @@ flutter create --template=package .
 
 * Create `moon.yml` in the project folder:
 ```yaml
-language: other
-type: application  # or 'library' for packages
+layer: 'application'
+language: 'other'
+stack: 'frontend'
 ```
 
 ## 🔧 Toolchain Setup
@@ -52,11 +55,11 @@ flutter = "3.44.0"
 
 * Add tasks to project `moon.yml`:
 ```yaml
-language: other
-type: application  # or 'library' for packages
-platform: system
-toolchain:
-  default: system
+layer: 'application'
+language: 'other'
+stack: 'frontend'
+toolchains:
+  default: 'system'
 tasks:
   dev:
     command: flutter run

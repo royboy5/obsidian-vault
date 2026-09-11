@@ -2,6 +2,8 @@
 
 [Moon SvelteKit Docs](https://moonrepo.dev/docs/guides/examples/sveltekit)
 
+Not the JS default path (that is [[Moonrepo Toolchain - React Vite]] + [[Moonrepo Toolchain - Biome]]).
+
 ## 📁 Project Setup
 
 * Create the project folder in the appropriate location:
@@ -15,11 +17,11 @@ mkdir packages/<project>
 cd apps/<project>  # or packages/<project>
 ```
 
-* Create a new SvelteKit project (do not run at workspace root):
+* Create a new SvelteKit project **inside** `apps/<id>` (not the workspace root). In a pnpm workspace prefer `pnpm create svelte@latest .` over `npm create`.
 ```bash
-npm create svelte@latest .
+pnpm create svelte@latest .
 ```
-* When prompted, select TypeScript, ESLint, Prettier and Vitest as needed
+* When prompted, select TypeScript and Vitest as needed. JS default formatter/linter is Biome — skip ESLint/Prettier unless this repo is not on Biome.
 
 * Update `package.json`:
 ```json
@@ -32,18 +34,21 @@ npm create svelte@latest .
 
 * Create `moon.yml` in the project folder:
 ```yaml
-language: typescript
-type: application  # or 'library' for packages
+layer: 'application'
+language: 'typescript'
+stack: 'frontend'
 ```
 
 ## 🔧 Toolchain Setup
 
-* Add to `.moon/toolchain.yml`:
+* Open `.moon/toolchains.yml`. For a JS workspace (`packageManager` under `javascript`, not `node`; versions in `.prototools`):
+
 ```yaml
-node:
-  version: "22.0.0"
-  packageManager: pnpm
-  addEnginesConstraint: true
+javascript:
+  packageManager: 'pnpm'
+# Versions: .prototools (moon versionFromPrototools defaults to true)
+node: {}
+pnpm: {}
 typescript:
   createMissingConfig: true
   routeOutDirToCache: true
@@ -52,8 +57,9 @@ typescript:
 
 * Add tags to project `moon.yml` using official preset (recommended):
 ```yaml
-language: typescript
-type: application  # or 'library' for packages
+layer: 'application'
+language: 'typescript'
+stack: 'frontend'
 tags: ['sveltekit']
 ```
 
@@ -74,6 +80,8 @@ export default config;
 ```
 
 ## ESLint Integration
+
+Skip this section if the repo is on Biome. If you are not on Biome:
 
 * Add to project `moon.yml`:
 ```yaml
@@ -137,4 +145,4 @@ tasks:
 * Do not create SvelteKit projects at the workspace root — always inside `apps/` or `packages/`
 * `private: true` in `package.json` prevents accidental publishing to npm
 * Use `@<org>/<project>` naming for all projects — e.g. `@huddle-up/web`
-* Run `Moonrepo Toolchain - TypeScript Config` to set up shared tsconfig files
+* Run [[Moonrepo Toolchain - TypeScript Config]] to set up shared tsconfig files

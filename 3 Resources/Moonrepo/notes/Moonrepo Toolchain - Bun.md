@@ -1,5 +1,7 @@
 ## 🌙 Moonrepo Toolchain: Bun
 
+Not the JS default path (that is pnpm + [[Moonrepo Toolchain - Node TypeScript]] / [[Moonrepo Toolchain - React Vite]]).
+
 ## 📁 Project Setup
 
 * Create the project folder in the appropriate location:
@@ -15,8 +17,9 @@ cd apps/<project>  # or packages/<project>
 
 * Create `moon.yml` in the project folder:
 ```yaml
-language: typescript
-type: application  # or 'library' for packages
+layer: 'application'
+language: 'typescript'
+stack: 'backend'
 ```
 
 * Initialise `package.json`:
@@ -35,7 +38,7 @@ bun init
 
 ## 🔧 Toolchain Setup
 
-* Add to `.moon/toolchain.yml`:
+* Add to `.moon/toolchains.yml`:
 ```yaml
 bun:
   version: "1.1.0"
@@ -48,8 +51,9 @@ bun = "1.1.0"
 
 * Add tasks to project `moon.yml`:
 ```yaml
-language: typescript
-type: application  # or 'library' for packages
+layer: 'application'
+language: 'typescript'
+stack: 'backend'
 tasks:
   dev:
     command: bun run src/index.ts
@@ -63,6 +67,6 @@ tasks:
 
 ## 📝 Notes
 
-* Bun acts as both runtime and package manager — swap out pnpm in `.prototools` and `toolchain.yml` if using Bun exclusively
+* Bun acts as both runtime and package manager — swap out pnpm in `.prototools` and `.moon/toolchains.yml` if using Bun exclusively
 * `private: true` in `package.json` prevents accidental publishing to npm
 * Use `@<org>/<project>` naming for all projects — e.g. `@huddle-up/worker`

@@ -4,58 +4,26 @@
 
 [Moon TS project reference](https://moonrepo.dev/docs/guides/javascript/typescript-project-refs)
 
-## 🔧 Setup
+Shared tsconfigs + inherited `typecheck`. Apps typecheck with `tsc --pretty --noEmit`. Bundlers emit JS (tsdown / Vite). Do not use `tsc --build` until a `packages/*` library needs project-reference builds.
 
-If using PNPM on multiple apps/packages, we need to create a pnpm workspace. (skip if this is already done)
+Skip the pnpm workspace bits if [[Moonrepo Workspace Initialization]] and [[Moonrepo Toolchain - PNPM]] are already done.
 
-Initialize `package.json` 
-```bash
-pnpm init
-```
+## Tasks Setup
 
-Update `package.json`:
-```json
-{
-  "name": "@<org>/<monorepo>",
-  "version": "0.0.0",
-  "private": true,
-  // Optional but suggested
-  "scripts": {
-	  "check": "moon check --all"
-  }
-}
-```
+Create `.moon/tasks/typescript.yml`. Filename does not filter. `inheritedBy` does.
 
-- Create `pnpm-workspace.yaml` at the monorepo root.
 ```yaml
-packages:
-  - 'apps/*'
-  - 'packages/*'
-```
-
-
-* Install at the workspace root:
-```bash
-pnpm add -D -w typescript
-```
-
-* Create `.moon/tasks/typescript.yml`:
-```yaml
-# Matches 'language: typescript' in each projects'moon.yml
-# toolchains: typescript - turns on the TS plugin
-# Will only be inherited by projects that has language set to typescript
-
+# Matches `language: typescript` on each project's moon.yml.
+# Prefer languages here. `toolchains: typescript` in this same map would
+# match the `typescript:` toolchain instead of the language field.
 inheritedBy:
-  languages: typescript
-  
-# Build will be used by a bundler (tsdown)
+  languages: 'typescript'
+
 tasks:
   typecheck:
     command:
       - 'tsc'
-      # - '--build'
       - '--pretty'
-      # - '--verbose'
       - '--noEmit'
     inputs:
       - 'src/**/*'
@@ -64,17 +32,43 @@ tasks:
       - 'tsconfig.json'
       - 'tsconfig.*.json'
       - '/tsconfig.options.json'
-    # outputs:
-      # - 'lib'
+```
+
+- No `outputs:` — nothing is emitted.
+- Empty `inheritedBy` would give `tsc` to every project (including Rust/Go later).
+- Later, when a `packages/*` library needs `tsc --build`, change the command then. Apps stay `noEmit`.
+
+## Toolchain Setup
+
+Open `.moon/toolchains.yml`. Check that it has top-level `javascript`, `node`, `pnpm`, and `typescript`, that `packageManager` is under `javascript` (not `node`), and that there is no `version:` under `node` or `pnpm`. If missing or still v1-shaped:
+
+```yaml
+javascript:
+  packageManager: 'pnpm'
+# Versions: .prototools (moon versionFromPrototools defaults to true)
+node: {}
+pnpm: {}
+typescript:
+  createMissingConfig: true
+  routeOutDirToCache: true
+  syncProjectReferences: true
+```
+
+`typescript:` manages tsconfigs (`outDir` cache, project references). It does not create `:typecheck`.
+
+Install TypeScript at the workspace root if it is not there yet:
+
+```bash
+pnpm add -D -w typescript
 ```
 
 ## Root-level Configuration
 
-* Create root `tsconfig.options.json` (shared compiler options):
+Create `tsconfig.options.json` (shared compiler options). This is the nodenext / `strict` / `composite` / `declaration` baseline. **Do not** put `jsx` or DOM `lib` here — that would hit Node apps.
+
 ```json
 {
   "compilerOptions": {
-    // Your custom options
     "moduleResolution": "nodenext",
     "target": "es2022",
     "skipLibCheck": true,
@@ -88,53 +82,48 @@ tasks:
 }
 ```
 
-* Create root `tsconfig.json` (houses all project references):
+Create root `tsconfig.json` (solution file). It compiles nothing. `syncProjectReferences` fills `references`.
+
 ```json
 {
   "extends": "./tsconfig.options.json",
   "files": [],
-  // All project references in the repo
-  "references": [
-	  // path of apps / packages
-	  {
-		  "path": "./apps/<appName>",
-		  "path": "./packages/<packageName>"
-	  }
-  ]
-}
-```
-
-> `extends` here is harmless but functionally inert — `"files": []` means this config never compiles anything itself, so the inherited
-> `compilerOptions` never actually apply to any file. Kept for convention (matches moon's own docs); safe to drop if that bothers you.
-## Project-level Configuration
-
-* Add `tsconfig.json` to each project:
-
-***Node***
-```json
-{
-  // Extend the root compiler options
-  "extends": "../../tsconfig.options.json",
-  "compilerOptions": {
-    // Declarations are written here
-    "noEmit": true,
-    "moduleResolution": "bundler",
-    "outDir": "../../.moon/cache/types/apps/<appName>"
-  },
-  // Include files in the project
-  "include": ["src/**/*", "tests/**/*"],
-  // Depends on other projects
   "references": []
 }
 ```
 
+> `extends` here is harmless but functionally inert — `"files": []` means this config never compiles anything itself. Kept for convention (matches moon's docs); safe to drop if that bothers you.
+
+## Project-level Configuration
+
+Each app/package needs `tsconfig.json`. Extend `tsconfig.options.json`, not the root solution file. `noEmit` + `moduleResolution: bundler`. Do **not** include bundler configs (`vite.config.ts`, `tsdown.config.ts`) — their published types fail under TypeScript 7; the bundler still runs those files.
+
+***Node (tsdown)***
+
+```json
+{
+  "extends": "../../tsconfig.options.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "moduleResolution": "bundler"
+  },
+  "include": ["src/**/*", "tests/**/*"],
+  "references": []
+}
+```
+
+***Vite SPA*** — same, plus `jsx` / DOM `lib` / maybe `allowImportingTsExtensions`. Full snippet: [[Moonrepo Toolchain - React Vite]].
+
+After `moon run <id>:typecheck`, moon may insert `"outDir": "../../.moon/cache/types/apps/<id>"` (`routeOutDirToCache`). Leave it. That cache is not `dist/`.
+
+If moon did not add `{ "path": "./apps/<id>" }` to the root solution file, add it.
+
+A shared UI package is `layer: library` with `emitDeclarationOnly` on **that** tsconfig. Apps stay `noEmit`.
 
 ## Internal / shared packages
 
-For packages consumed only inside the monorepo (not published to npm),
-skip giving them a build step — point `package.json` straight at source so
-consuming apps type-check and bundle it directly, no dist folder to keep in
-sync:
+For packages consumed only inside the monorepo (not published to npm), skip a build step — point `package.json` at source so consuming apps type-check and bundle it directly:
+
 ```json
 {
   "name": "@<org>/shared-types",
@@ -145,20 +134,23 @@ sync:
   "exports": { ".": "./src/index.ts" }
 }
 ```
-Consuming projects depend on it the normal workspace way:
+
+Consuming projects:
+
 ```json
 { "dependencies": { "@<org>/shared-types": "workspace:*" } }
 ```
-> The most common breakage here: a mismatch between the actual entry file
-> extension and what `main`/`types`/`exports` point at (`.ts` vs `.tsx`).
-> Module resolution fails silently with "cannot find module" if these drift.
 
+> The most common breakage: a mismatch between the actual entry file extension and what `main` / `types` / `exports` point at (`.ts` vs `.tsx`). Module resolution fails with "cannot find module" if these drift.
+
+`composite: true` on `tsconfig.options.json` is required when a project is listed in another project's `references` (TS6306). A project only co-listed under the root solution file does not need it by itself.
 
 ## 📝 Notes
 
-* `-w` flag is required — tells pnpm to install at the workspace root, not a project
-* `tsconfig.options.json` holds shared compiler options — never define `compilerOptions` directly in `tsconfig.json`
-* `syncProjectReferences: true` in `.moon/toolchain.yml` keeps project references in sync automatically
-* Tasks in `.moon/tasks/` are inherited automatically by all projects — no need to add `typecheck` to each `moon.yml`
-* Always pass `--pretty` to preserve colour output when running in moon's task runner
-* Project-level `tsconfig.json` should extend `tsconfig.options.json` not the root `tsconfig.json`
+* `-w` tells pnpm to install at the workspace root
+* App `compilerOptions` belong on the project tsconfig (`jsx`, DOM `lib`, `bundler`). Not on `tsconfig.options.json`
+* `syncProjectReferences: true` lives in `.moon/toolchains.yml` under `typescript:` — not `.moon/workspace.yml`
+* Tasks in `.moon/tasks/` are inherited via `inheritedBy`, not the filename. No `typecheck` on each app `moon.yml`
+* Always pass `--pretty` so colour survives moon's runner
+* Add `lib/`, `dist/`, and `*.tsbuildinfo` to `.gitignore`
+* Optional extra under `typescript:`: `includeProjectReferenceSources: true` (go-to-definition jumps to source instead of a `.d.ts` stub)
